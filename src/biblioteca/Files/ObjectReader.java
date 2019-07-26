@@ -5,10 +5,32 @@
  */
 package biblioteca.Files;
 
+import biblioteca.Models.Estudiante;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
 /**
  *
  * @author Gamcas
  */
 public class ObjectReader {
-    
+
+    public static Estudiante readEstudiante(String estudiante) throws IOException {
+        
+        
+        File file = new File("DB/estudiantes/" + estudiante + ".est");
+        try (FileInputStream fileInputStream = new FileInputStream(file);
+                ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);) {
+            return (Estudiante) inputStream.readObject();
+        } catch (IOException e) {
+            throw new IOException();
+        } catch (ClassNotFoundException e) {
+            System.out.println("El objeto no tiene la forma de un estudiante");
+        }
+        return null;
+
+    }
+
 }

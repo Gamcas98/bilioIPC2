@@ -5,11 +5,14 @@
  */
 package biblioteca.Models;
 
+import biblioteca.Files.ObjectSaver;
+import java.io.Serializable;
+
 /**
  *
  * @author Gamcas
  */
-public class Estudiante {
+public class Estudiante implements Serializable {
     
     private int carnet;
     private int carrera;
@@ -20,6 +23,7 @@ public class Estudiante {
         this.carnet = carnet;
         this.carrera = carrera;
         this.nombre = nombre;
+        ObjectSaver.saveEstudent(this);
     }
 
     public Estudiante(int carnet, int carrera, String nombre, int fechaNacimiendo) {
@@ -27,9 +31,12 @@ public class Estudiante {
         this.carrera = carrera;
         this.nombre = nombre;
         this.fechaNacimiendo = fechaNacimiendo;
+        ObjectSaver.saveEstudent(this);
     }
     
-    
+    public String toString(){
+    return nombre +" " + carnet + " " + carrera; 
+    }
     
     
 

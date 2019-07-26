@@ -6,10 +6,30 @@
  */
 package biblioteca.Files;
 
+import biblioteca.Models.Estudiante;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 /**
  *
  * @author Gamcas
  */
 public class ObjectSaver {
-    
+
+    public static boolean saveEstudent(Estudiante estudiante) {
+
+        File file = new File("DB/estudiantes/" + estudiante.getNombre() + ".est");
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file);
+                ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);) {
+            outputStream.writeObject(estudiante);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error de conexion con el archivo");
+        }
+
+        return true;
+    }
 }
