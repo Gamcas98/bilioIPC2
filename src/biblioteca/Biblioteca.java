@@ -5,6 +5,9 @@
  */
 package biblioteca;
 
+import biblioteca.UI.*;
+import java.io.File;
+
 /**
  *
  * @author Gamcas
@@ -14,8 +17,33 @@ public class Biblioteca {
     /**
      * @param args the command line arguments
      */
+
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        initComponents();
     }
-    
+
+    public static void initComponents() {
+
+        
+        
+        File estudiante = new File("DB\\estudiantes");
+        File prestamo = new File("DB\\prestamos");
+        File libro = new File("DB\\libros");
+
+        if (!estudiante.exists()) {
+            estudiante.mkdir();
+            new FormLecturaArchivo();
+        }else{
+            new FormPrincipal();
+        }
+        if (!prestamo.exists()) {
+            prestamo.mkdir();
+        }
+        if (!libro.exists()) {
+            libro.mkdir();
+        }
+
+        //Arranca un nuevo MainDesktop para poder trabajar
+    }
 }
